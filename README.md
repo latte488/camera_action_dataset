@@ -1,7 +1,12 @@
 # camera_action_dataset
 
-## 手順
+## Datasetの準備
 ```bash
 bash download.sh
-nohup python3 -u uiuc_image_to_movie.py &
+python3 uiuc_image_to_movie.py
+```
+
+## 学習
+```
+python3 train.py
 ```
