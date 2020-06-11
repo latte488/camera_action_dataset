@@ -9,7 +9,7 @@ class Dataset(torchvision.datasets.VisionDataset):
     def __init__(self, root, train=True, transforms=None, transform=None, target_transform=None):
         super(Dataset, self).__init__(root, transforms, transform, target_transform)
         self.root = root
-        label_path = f'{root}/0.toml'
+        label_path = f'{self.root}/0.toml'
         label_dist = toml.load(label_path)
         self.action_label_dist = label_dist['Action label']
         self.path_and_label = list(label_dist['Video label'].items())
@@ -24,7 +24,7 @@ class Dataset(torchvision.datasets.VisionDataset):
 
     def __getitem__(self, index):
         video_name, label = self.path_and_label[index]
-        video_path = f'{root}/{video_name}'
+        video_path = f'{self.root}/{video_name}'
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
             raise ValueError('No file in path. Check the `root` path.')

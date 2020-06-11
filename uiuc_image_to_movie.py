@@ -25,12 +25,12 @@ if __name__ == '__main__':
         camera.ZoomIn,
         camera.ZoomOut,
     ]
-    for i in range(1):
+    for i in range(25):
         maker.make(
             root=f'data/uiuc_T{i + 1:02}_camera_action_dataset', 
             loader=uiuc_texture(i + 1), 
             actions=actions,
-            video_per_action=1,
+            video_per_action=4,
             frame_number=100,
             frame_size=(128, 128),
             fps=60,
