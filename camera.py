@@ -96,8 +96,8 @@ class MoveUp(Action):
     def start(self, image):
         self.reset()
         image_height, image_width, _ = image.shape
-        self.x = random.randint(0, image_width - self.frame_width)
-        self.y = random.randint(self.frame_number, image_height - self.frame_height)
+        self.x = random.randint(0, image_width - self.frame_width - 1)
+        self.y = random.randint(self.frame_number, image_height - self.frame_height - 1)
 
     def update(self):
         self.y -= 1
@@ -110,8 +110,8 @@ class MoveDown(Action):
     def start(self, image):
         self.reset()
         image_height, image_width, _ = image.shape
-        self.x = random.randint(0, image_width - self.frame_width)
-        self.y = random.randint(0, image_height - self.frame_height - self.frame_number)
+        self.x = random.randint(0, image_width - self.frame_width - 1)
+        self.y = random.randint(0, image_height - self.frame_height - self.frame_number - 1)
 
     def update(self):
         self.y += 1
@@ -124,8 +124,8 @@ class MoveLeft(Action):
     def start(self, image):
         self.reset()
         image_height, image_width, _ = image.shape
-        self.x = random.randint(0 + self.frame_number, image_width - self.frame_width)
-        self.y = random.randint(0, image_height - self.frame_height)
+        self.x = random.randint(0 + self.frame_number, image_width - self.frame_width - 1)
+        self.y = random.randint(0, image_height - self.frame_height - 1)
 
     def update(self):
         self.x -= 1
@@ -138,8 +138,8 @@ class MoveRight(Action):
     def start(self, image):
         self.reset()
         image_height, image_width, _ = image.shape
-        self.x = random.randint(0, image_width - self.frame_width - self.frame_number)
-        self.y = random.randint(0, image_height - self.frame_height)
+        self.x = random.randint(0, image_width - self.frame_width - self.frame_number - 1)
+        self.y = random.randint(0, image_height - self.frame_height - 1)
 
     def update(self):
         self.x += 1
@@ -154,8 +154,8 @@ class Rotate(Action):
         self.reset()
         half_diagonal = math.sqrt(self.frame_width ** 2 + self.frame_height ** 2) // 2 + 1
         image_height, image_width, _ = image.shape
-        self.x = random.randint(0 + half_diagonal, image_width - half_diagonal - self.frame_width)
-        self.y = random.randint(0 + half_diagonal, image_height - half_diagonal - self.frame_height)
+        self.x = random.randint(0 + half_diagonal, image_width - half_diagonal - self.frame_width - 1)
+        self.y = random.randint(0 + half_diagonal, image_height - half_diagonal - self.frame_height - 1)
 
     def update(self):
         self.angle += 180 / (self.frame_number - 1) * self.direction
@@ -178,8 +178,8 @@ class ZoomIn(Action):
     def start(self, image):
         self.reset()
         image_height, image_width, _ = image.shape
-        self.x = random.randint(0, image_width - self.frame_width)
-        self.y = random.randint(0, image_height - self.frame_height)
+        self.x = random.randint(0, image_width - self.frame_width - 1)
+        self.y = random.randint(0, image_height - self.frame_height - 1)
     
     def update(self):
         self.scale += 1 / (self.frame_number - 1)
@@ -194,8 +194,8 @@ class ZoomOut(Action):
         half_frame_width = self.frame_width // 2 + 1
         half_frame_height = self.frame_height // 2 + 1
         image_height, image_width, _ = image.shape
-        self.x = random.randint(0 + half_frame_width, image_width - self.frame_width - half_frame_width)
-        self.y = random.randint(0 + half_frame_height, image_height - self.frame_height - half_frame_height)
+        self.x = random.randint(0 + half_frame_width, image_width - self.frame_width - half_frame_width - 1)
+        self.y = random.randint(0 + half_frame_height, image_height - self.frame_height - half_frame_height - 1)
 
     def update(self):
         self.scale -= 0.5 / (self.frame_number - 1)
