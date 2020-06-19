@@ -31,9 +31,9 @@ if __name__ == '__main__':
             loader=uiuc_texture(i + 1), 
             actions=actions,
             video_per_action=4,
-            frame_number=20,
-            frame_size=(64, 64),
-            fps=10,
+            frame_number=10,
+            frame_size=(32, 32),
+            fps=5,
             fmt='mp4v',
         )
 
